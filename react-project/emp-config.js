@@ -1,5 +1,5 @@
 module.exports = ({ config, env, empEnv }) => {
-  const port = 8080;
+  const port = 8002;
   const url = {
     prod: "https://emp-react-base.yourdomain.com/",
     test: "https://emp-react-base-test.yourdomain.com/",
@@ -17,10 +17,13 @@ module.exports = ({ config, env, empEnv }) => {
         name: "empReactDemo",
         // 远程项目别名:远程引入的项目名
         remotes: {
-          "@emp/vueComponents": "empVueProject",
+          "@emp/react-base": "empReactBase@http://localhost:8001/emp.js",
+          "@emp/vueComponents": "empVueProject@http://localhost:8006/emp.js",
         },
         // 对外暴露的东西
-        exposes: {},
+        exposes: {
+          './helper': './src/helper'
+        },
         shared: {
           // todo 抽取成公共文件
           react: { eager: true, singleton: true, requiredVersion: "^16.13.1" },
@@ -44,10 +47,9 @@ module.exports = ({ config, env, empEnv }) => {
       ...args[0],
       ...{
         // head 的 title
-        title: "EMP REACT BASE",
+        title: "EMP REACT PROJECT",
         // 远程调用项目的文件链接
         files: {
-          js: ["http://localhost:8006/emp.js"],
         },
       },
     };

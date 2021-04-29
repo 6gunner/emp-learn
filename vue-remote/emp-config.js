@@ -15,12 +15,11 @@ module.exports = withVue2(({ config, env, empEnv }) => {
     args[0] = {
       ...args[0],
       ...{
-        name: "empVueProject",
+        name: "empVueProject", // 项目名称，可以理解为应用的身份证，在应用分享资源时使用的标识应用唯一性的凭证
         remotes: {},
-        library: { type: "var", name: "projectName" },
         exposes: {
           // 别名：组件的路径
-          "./Content": "./src/components/Content", // 暴露了这个组件
+          "./Content": "./src/components/Content.vue", // 暴露了这个组件
         },
         shared: ["vue/dist/vue.esm.js"],
         // 被远程引入的文件名，// 比如这个项目，对外暴露的文件为http://localhost:8006/emp.js
